@@ -132,7 +132,7 @@ const getAllProperties = function(options, limit = 10) {
     }
   
     if (options.owner_id) {
-      queryParams.push(options.owner_id);
+      queryParams.push(`${options.owner_id}`);
       queryString += `AND owner_id = $${queryParams.length} `;
     }
 
@@ -166,7 +166,7 @@ const getAllProperties = function(options, limit = 10) {
     // 6
     return pool.query(queryString, queryParams)
     .then(res => {
-      console.log('RESULT', res.rows);
+      // console.log('RESULT', res.rows);
       return res.rows
     });
 
@@ -188,7 +188,7 @@ const addProperty = function(property) {
   // let queryParams = Object.values(property);
   // console.log(queryParams);
   // let queryString = 
-  console.log('PROPERTY', property);
+  // console.log('PROPERTY', property);
   return pool.query(`INSERT INTO properties (
     owner_id,
     title,
@@ -235,7 +235,7 @@ const addProperty = function(property) {
       property.number_of_bathrooms,
       property.number_of_bedrooms]
   ).then(res => {
-    console.log('RESULT', res.rows);
+    // console.log('RESULT', res.rows);
     return (res.rows.length > 0) ? res.rows[0] : null;
   });
 
